@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Houses</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4D82FE;
+        }
+    </style>
+</head>
+<body>
+<h1>List of Houses</h1>
+<table border="1">
+    <tr>
+        <th>Address</th>
+        <th>Bedrooms</th>
+        <th>Type</th>
+    </tr>
+    <tr th:each="house : ${houses}">
+        <td>
+            <a th:href="@{/houses/{id}(id=${house.getId()})}" th:text="${house.getAddress()}"></a>
+        </td>
+        <td th:text="${house.getBedrooms()}"></td>
+        <td th:text="${house.getType()}"></td>
+    </tr>
+</table>
+
+<a href="/houses/new">Create New House</a>
+</body>
+</html>

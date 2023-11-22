@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4D82FE;
+        }
+    </style>
+</head>
+<body>
+<h2>Список:</h2>
+<table>
+    <caption>Информация о книгах</caption>
+    <thead>
+    <tr>
+        <th>Заголовок</th>
+        <th>Автор</th>
+        <th>Количество страниц</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td>
+            <a th:href="@{/books/{id}(id=${book.getId()})}" th:text="${book.getTitle()}"></a>
+        </td>
+        <td th:text="${book.getAuthor()}"></td>
+        <td th:text="${book.getPageCount()}"></td>
+        <td>
+            <a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit</a>
+            <form method="post" th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+                <input type="submit" value="Удалить">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/books/new">Добавить новую книгу в список</a>
+</body>
+</html>

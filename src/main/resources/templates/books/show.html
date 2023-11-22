@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о книге</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Информация о книге</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>Заголовок</th>
+                <th>Автор</th>
+                <th>Количество страниц</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${book.getTitle()}"></td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td th:text="${book.getPageCount()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a th:href="@{/books/{id}/edit(id=${book.getId()})}" class="btn btn-primary">Edit</a>
+    <form method="post" th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+        <input type="submit" class="btn btn-danger" value="Удалить">
+    </form>
+</div>
+</body>
+</html>
